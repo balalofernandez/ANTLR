@@ -1,0 +1,26 @@
+# Encabezado de prueba;
+## Encabezado de prueba2;
+### Encabezado de prueba3;
+#### Encabezado de prueba4;
+##### Encabezado de prueba5;
+###### Encabezado de prueba6;
+**NEGRITA**
+__NEGRITA2__
+> y una cita dentro del texto
+
+antes de la linea horizontal
+---
+despues de la linea horizontal
+~~~
+System.out.print("Primera linea de codigo");
+System.out.print("... mas codigo ...");
+System.out.print("ultima linea de codigo");
+~~~
+[Esto deberia ser un enlace](thphp://NO-es-una-URL_VALIDA)
+[Esto deberia ser un enlace](http://urjc.es)
+- primer item
+- segundo item
+- 3
+
+- solo un item
+
