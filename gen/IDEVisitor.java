@@ -1,4 +1,4 @@
-// Generated from D:/Universidad/Lenguajes/PracticaObligatoria/src\IDE.g4 by ANTLR 4.9.2
+// Generated from C:/Users/Chete/Desktop/PROCESADORES_DE_LENGUAJES/ANTLR/src\IDE.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
