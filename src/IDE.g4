@@ -32,7 +32,7 @@ exp_aux : (op exp exp_aux)?;
 op : '+' | '-' | '*' | 'DIV' | 'MOD';
 factor : simpvalue | '(' exp ')' | IDENTIFIER subpparamlist;
 subpparamlist : ('(' explist ')')?;
-explist : exp expcond_aux;
+explist : exp explist_aux;
 explist_aux : (',' explist)?;
 proc_call : IDENTIFIER subpparamlist;
 
@@ -40,6 +40,7 @@ sent_opc : 'IF' expcond 'THEN' blq 'ELSE' blq
            | 'WHILE' expcond 'DO' blq
            | 'REPEAT' blq 'UNTIL' expcond ';'
            | 'FOR' IDENTIFIER ':=' exp inc exp 'DO' blq;
+
 inc : 'TO' | 'DOWNTO';
 expcond : factorcond expcond_aux;
 expcond_aux : (oplog expcond expcond_aux)?;
@@ -56,7 +57,6 @@ COMMENT : '{' TEXTO* '}';//PERMITIMOS COMENTARIOS VACIOS
 COMMENT_LINES : '(*' .*? '*)'; //POR AQUI
 
 IGNORE: [\t\n\r] -> skip;
-
 
 fragment CARACTER : [a-zA-Z]+;
 fragment NUM : [0-9]+;
