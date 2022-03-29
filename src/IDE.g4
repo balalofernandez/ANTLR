@@ -1,51 +1,52 @@
 grammar IDE;
 
-r: (IDENTIFIER | NUMERIC_INTEGER_CONST | NUMERIC_REAL_CONST | STRING_CONST | COMMENT | COMMENT_LINES)+;
+r: prg;
 
-prg: 'PROGRAM' IDENTIFIER ';' blq '.';
-blq: dcllist 'BEGIN' sentlist 'END';
+prg: {System.out.print("PROGRAM");} 'PROGRAM'  IDENTIFIER  {System.out.println(";");}';' blq {System.out.print("PROGRAM");}'.';
+blq: dcllist {System.out.print("PROGRAM");}'BEGIN' sentlist {System.out.print("PROGRAM");}'END';
 dcllist: (dcl dcllist)?;
 sentlist : sent sentlist_aux;
 sentlist_aux : (sent sentlist_aux)?;
 
 dcl: (defcte | defvar | defproc | deffun) ;
-defcte: 'CONST' ctelist;
-ctelist : IDENTIFIER '=' simpvalue ';' ctelist_aux ;
-ctelist_aux : (IDENTIFIER '=' simpvalue ';' ctelist_aux)?;
+defcte: {System.out.print("PROGRAM");}'CONST' ctelist;
+ctelist : IDENTIFIER {System.out.print("PROGRAM");}'=' simpvalue {System.out.print("PROGRAM");}';' ctelist_aux ;
+ctelist_aux : (IDENTIFIER {System.out.print("PROGRAM");}'=' simpvalue {System.out.print("PROGRAM");}';' ctelist_aux)?;
 simpvalue : (NUMERIC_INTEGER_CONST | NUMERIC_REAL_CONST| STRING_CONST);
-defvar : 'VAR' defvarlist ';';
-defvarlist : varlist ':' tbas defvarlist_aux;
-defvarlist_aux : (';' varlist ':' tbas defvarlist_aux)?;
-varlist : IDENTIFIER | IDENTIFIER ',' varlist ;
-defproc : 'PROCEDURE' IDENTIFIER formal_paramlist ';' blq ';' ;
-deffun : 'FUNCTION' IDENTIFIER formal_paramlist ':' tbas ';' blq ';' ;
-formal_paramlist :  ('(' formal_param ')')? ;
-formal_param : varlist ':' tbas formal_param_aux;
+defvar : {System.out.print("PROGRAM");}'VAR' defvarlist {System.out.print("PROGRAM");}';';
+defvarlist : varlist {System.out.print("PROGRAM");}':' tbas defvarlist_aux;
+defvarlist_aux : ({System.out.print("PROGRAM");}';' varlist {System.out.print("PROGRAM");}':' tbas defvarlist_aux)?;
+varlist : IDENTIFIER varlist_aux;
+varlist_aux : ({System.out.print("PROGRAM");}',' varlist)? ;
+defproc : {System.out.print("PROGRAM");}'PROCEDURE' IDENTIFIER formal_paramlist {System.out.print("PROGRAM");}';' blq {System.out.print("PROGRAM");}';' ;
+deffun : {System.out.print("PROGRAM");}'FUNCTION' IDENTIFIER formal_paramlist {System.out.print("PROGRAM");}':' tbas {System.out.print("PROGRAM");}';' blq {System.out.print("PROGRAM");}';' ;
+formal_paramlist :  ({System.out.print("PROGRAM");}'(' formal_param {System.out.print("PROGRAM");}')')? ;
+formal_param : varlist {System.out.print("PROGRAM");}':' tbas formal_param_aux;
 formal_param_aux : (formal_param)?;
-tbas : 'integer' | 'real' ;
+tbas : {System.out.print("PROGRAM");}'integer' | {System.out.print("PROGRAM");}'real' ;
 
 //Llamadas a procedimientos;
-sent : asig ';' | proc_call ';' | sent_opc;
-asig : IDENTIFIER ':=' exp;
+sent : asig {System.out.print("PROGRAM");}';' | proc_call {System.out.print("PROGRAM");}';' | sent_opc;
+asig : IDENTIFIER {System.out.print("PROGRAM");}':=' exp;
 exp : factor exp_aux;
 exp_aux : (op exp exp_aux)?;
-op : '+' | '-' | '*' | 'DIV' | 'MOD';
-factor : simpvalue | '(' exp ')' | IDENTIFIER subpparamlist;
-subpparamlist : ('(' explist ')')?;
+op : ('+' | '-' | '*' | 'DIV' | 'MOD') {System.out.print(getText());};
+factor : simpvalue | {System.out.print("PROGRAM");}'(' exp {System.out.print("PROGRAM");}')' | IDENTIFIER subpparamlist;
+subpparamlist : ({System.out.print("PROGRAM");}'(' explist {System.out.print("PROGRAM");}')')?;
 explist : exp explist_aux;
-explist_aux : (',' explist)?;
+explist_aux : ({System.out.print("PROGRAM");}',' explist)?;
 proc_call : IDENTIFIER subpparamlist;
 
-sent_opc : 'IF' expcond 'THEN' blq 'ELSE' blq
-           | 'WHILE' expcond 'DO' blq
-           | 'REPEAT' blq 'UNTIL' expcond ';'
-           | 'FOR' IDENTIFIER ':=' exp inc exp 'DO' blq;
+sent_opc : {System.out.print("PROGRAM");}'IF' expcond {System.out.print("PROGRAM");}'THEN' blq {System.out.print("PROGRAM");}'ELSE' blq
+           | {System.out.print("PROGRAM");}'WHILE' expcond {System.out.print("PROGRAM");}'DO' blq
+           | {System.out.print("PROGRAM");}'REPEAT' blq {System.out.print("PROGRAM");}'UNTIL' expcond {System.out.print("PROGRAM");}';'
+           | {System.out.print("PROGRAM");}'FOR' IDENTIFIER {System.out.print("PROGRAM");}':=' exp inc exp {System.out.print("PROGRAM");}'DO' blq;
 
-inc : 'TO' | 'DOWNTO';
+inc : {System.out.print("PROGRAM");}'TO' | {System.out.print("PROGRAM");}'DOWNTO';
 expcond : factorcond expcond_aux;
 expcond_aux : (oplog expcond expcond_aux)?;
-oplog : 'OR' | 'AND';
-factorcond : exp opcomp exp | '(' expcond ')' | 'NOT' factorcond | 'TRUE' | 'FALSE';
+oplog : {System.out.print("PROGRAM");}'OR' | {System.out.print("PROGRAM");}'AND';
+factorcond : exp opcomp exp | {System.out.print("PROGRAM");}'(' expcond {System.out.print("PROGRAM");}')' | {System.out.print("PROGRAM");}'NOT' factorcond | {System.out.print("PROGRAM");}'TRUE' | {System.out.print("PROGRAM");}'FALSE';
 opcomp : '<' | '>' | '<=' | '>=' | '=' ;
 
 IDENTIFIER : (CARACTER | '_') (CARACTER | NUM | '_')* {System.out.print("IDENTIFICADOR("+getText()+")");};
@@ -56,7 +57,10 @@ STRING_CONST : ('\'' TEXTO* '\'' | '"' TEXTO* '"' ) {System.out.print("STRING_CO
 COMMENT : '{' TEXTO* '}';//PERMITIMOS COMENTARIOS VACIOS
 COMMENT_LINES : '(*' .*? '*)'; //POR AQUI
 
-IGNORE: [\t\n\r] -> skip;
+IGNORE: ([\t\n\r]|' ') {
+   System.out.print(" ");
+   skip();
+   };
 
 fragment CARACTER : [a-zA-Z]+;
 fragment NUM : [0-9]+;
