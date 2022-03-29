@@ -1,26 +1,18 @@
-# Encabezado de prueba;
-## Encabezado de prueba2;
-### Encabezado de prueba3;
-#### Encabezado de prueba4;
-##### Encabezado de prueba5;
-###### Encabezado de prueba6;
-**NEGRITA**
-__NEGRITA2__
-> y una cita dentro del texto
+contador
+contador1
+acumulador_total_2
+contador3
 
-antes de la linea horizontal
----
-despues de la linea horizontal
-~~~
-System.out.print("Primera linea de codigo");
-System.out.print("... mas codigo ...");
-System.out.print("ultima linea de codigo");
-~~~
-[Esto deberia ser un enlace](thphp://NO-es-una-URL_VALIDA)
-[Esto deberia ser un enlace](http://urjc.es)
-- primer item
-- segundo item
-- 3
-
-- solo un item
-
++123 , -690 , 405 , 000078 , -005 , +0953
++123.456 , -00.69 , 45.07000
+123E456 , -64E-77 , +045e16, 003E+35
+1.23E456 , -000.64E-77 , +045.0e16 , 0.03E+35
+'contenido de la constante literal'
+“contenido de la constante literal”
+'comilla doble ” dentro'
+“comilla simple ' dentro”
+'comilla simple '' dentro'
+“comilla doble ”” dentro”
+'comilla doble ” y simple '' dentro'
+“comilla simple ' y doble ”” dentro”
+(*Esto es un comentario*)

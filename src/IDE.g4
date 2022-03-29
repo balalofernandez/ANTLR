@@ -12,8 +12,12 @@ ctelist : IDENTIFIER '=' simpvalue ';' | ctlist_aux;
 ctlist_aux:  IDENTIFIER '=' simpvalue ';' ctelist;
 simpvalue : (NUMERIC_INTEGER_CONST | NUMERIC_REAL_CONST| STRING_CONST);
 defvar : 'VAR' defvarlist ';';
+//////POR AQUI
+// defvarlist : varlist ':' tbas | defvarlist ';' varlist ':' tbas;
 defvarlist : varlist ':' tbas | defvarlist ';' varlist ':' tbas;
-varlist : IDENTIFIER | IDENTIFIER ',' varlist ;
+defvarlist_aux :
+varlist : IDENTIFIER | varlist_aux;
+varlist_aux: IDENTIFIER ',' varlist;
 defproc : 'PROCEDURE' IDENTIFIER formal_paramlist ';' blq ';' ;
 deffun : 'FUNCTION' IDENTIFIER formal_paramlist ':' tbas ';' blq ';' ;
 formal_paramlist :  ('(' formal_param ')')? ;
@@ -39,8 +43,8 @@ NUMERIC_INTEGER_CONST : ('+' | '-')? NUM {System.out.print("NUMERIC_INTEGER_CONS
 NUMERIC_REAL_CONST : ('+' | '-')? NUM ('.' NUM)? (('e'|'E') ('+'|'-')? NUM)? {System.out.print("NUMERIC_REAL_CONST("+getText()+")");};//COMENTAR QUE AQUI SE VA A APLICAR LA REGLA MÁS LARGA
 STRING_CONST : ('\'' TEXTO* '\'' | '"' TEXTO* '"' ) {System.out.print("STRING_CONST("+getText()+")");};
 
-COMMENT : '{' TEXTO* '}';//PERMITIMOS COMENTARIOS VACIOS
-COMMENT_LINES : '(*' .*? '*)'; //POR AQUI
+COMMENT : '{' TEXTO* '}' {System.out.print("COMENTARIO("+getText()+")");};//PERMITIMOS COMENTARIOS VACIOS
+COMMENT_LINES : '(*' .*? '*)' {System.out.print("COMENTARIO_MULTILINEA("+getText()+")");}; //POR AQUI
 
 IGNORE: [\t\n\r] -> skip;
 
