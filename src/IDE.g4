@@ -32,7 +32,7 @@ exp_aux : (op exp exp_aux)?;
 op : '+' | '-' | '*' | 'DIV' | 'MOD';
 factor : simpvalue | '(' exp ')' | IDENTIFIER subpparamlist;
 subpparamlist : ('(' explist ')')?;
-explist : exp;
+explist : exp expcond_aux;
 explist_aux : (',' explist)?;
 proc_call : IDENTIFIER subpparamlist;
 
