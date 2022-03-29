@@ -157,6 +157,16 @@ public interface IDEListener extends ParseTreeListener {
 	 */
 	void exitVarlist(IDEParser.VarlistContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link IDEParser#varlist_aux}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarlist_aux(IDEParser.Varlist_auxContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IDEParser#varlist_aux}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarlist_aux(IDEParser.Varlist_auxContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link IDEParser#defproc}.
 	 * @param ctx the parse tree
 	 */

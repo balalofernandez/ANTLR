@@ -195,6 +195,18 @@ public class IDEBaseListener implements IDEListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVarlist_aux(IDEParser.Varlist_auxContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarlist_aux(IDEParser.Varlist_auxContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDefproc(IDEParser.DefprocContext ctx) { }
 	/**
 	 * {@inheritDoc}

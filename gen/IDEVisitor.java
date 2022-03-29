@@ -100,6 +100,12 @@ public interface IDEVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVarlist(IDEParser.VarlistContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link IDEParser#varlist_aux}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarlist_aux(IDEParser.Varlist_auxContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link IDEParser#defproc}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

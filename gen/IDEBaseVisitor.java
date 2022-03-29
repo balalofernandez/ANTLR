@@ -121,6 +121,13 @@ public class IDEBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements ID
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitVarlist_aux(IDEParser.Varlist_auxContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitDefproc(IDEParser.DefprocContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

@@ -1,5 +1,5 @@
 PROGRAM PRUEBA;
-VAR num:integer;
+VAR num:integer;  
 BEGIN
 num := num + 1;
 END.
