@@ -25,8 +25,11 @@ formal_param_aux : (formal_param)?;
 tbas : 'integer' | 'real' ;
 
 //Llamadas a procedimientos;
-sent : asig ';' | proc_call ';' | sent_opc;
-asig : IDENTIFIER ':=' exp;
+//sent : asig ';' | proc_call ';' | sent_opc;
+sent : IDENTIFIER sent_aux ';' | sent_opc;
+sent_aux : asig | proc_call ;
+//asig : IDENTIFIER ':=' exp;
+asig : ':=' exp;
 exp : factor exp_aux;
 exp_aux : (op exp exp_aux)?;
 op : '+' | '-' | '*' | 'DIV' | 'MOD';
@@ -34,7 +37,8 @@ factor : simpvalue | '(' exp ')' | IDENTIFIER subpparamlist;
 subpparamlist : ('(' explist ')')?;
 explist : exp explist_aux;
 explist_aux : (',' explist)?;
-proc_call : IDENTIFIER subpparamlist;
+//proc_call : IDENTIFIER subpparamlist;
+proc_call : subpparamlist;
 
 sent_opc : 'IF' expcond 'THEN' blq 'ELSE' blq
            | 'WHILE' expcond 'DO' blq
